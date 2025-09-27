@@ -1,0 +1,18 @@
+{
+  "login": {
+    "token": "your-secret-token",
+    "user": {
+      "id": 1,
+      "name": "John Doe",
+      "email": "john@example.com"
+    }
+  },
+  "customers": [
+    { "id": 1, "name": "ABC Corp", "email": "contact@abc.com", "phone": "123-456-7890", "company": "ABC Corp" },
+    { "id": 2, "name": "XYZ Inc", "email": "info@xyz.com", "phone": "098-765-4321", "company": "XYZ Inc" }
+  ],
+  "leads": [
+    { "id": 1, "customerId": 1, "title": "Software Project", "description": "Discussing a new software project.", "status": "New", "value": 5000, "createdAt": "2025-09-24T10:00:00Z" },
+    { "id": 2, "customerId": 2, "title": "Hardware Upgrade", "description": "Need new servers.", "status": "Contacted", "value": 15000, "createdAt": "2025-09-23T15:30:00Z" }
+  ]
+}
