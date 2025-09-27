@@ -7,6 +7,7 @@ import { useSelector } from 'react-redux';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 import LoginScreen from '../screens/LoginScreen';
+import RegisterScreen from '../screens/RegisterScreen'; // 
 import CustomerListScreen from '../screens/CustomerListScreen';
 import CustomerFormScreen from '../screens/CustomerFormScreen';
 import CustomerDetailsScreen from '../screens/CustomerDetailsScreen';
@@ -19,6 +20,7 @@ const Tab = createBottomTabNavigator();
 const AuthStack = () => (
   <Stack.Navigator screenOptions={{ headerShown: false }}>
     <Stack.Screen name="Login" component={LoginScreen} />
+     <Stack.Screen name="Register" component={RegisterScreen} />
   </Stack.Navigator>
 );
 

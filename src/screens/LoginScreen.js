@@ -1,4 +1,4 @@
-// src/screens/LoginScreen.js
+// src/screens/LoginScreen.js (FINAL CORRECTED VERSION)
 import React from 'react';
 import { View, StyleSheet, Alert } from 'react-native';
 import { TextInput, Button, Title, Subheading, HelperText } from 'react-native-paper';
@@ -7,13 +7,17 @@ import { loginUser } from '../features/auth/authSlice';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 
+// NOTE: Removed the unused 'useNavigation' import, as we are receiving it as a prop.
+
 const LoginSchema = Yup.object().shape({
   email: Yup.string().email('Invalid email').required('Required'),
   password: Yup.string().min(6, 'Password is too short').required('Required'),
 });
 
-const LoginScreen = () => {
+// CRITICAL FIX: Receive 'navigation' as a prop
+const LoginScreen = ({ navigation }) => {
   const dispatch = useDispatch();
+  // NOTE: Deleted 'const navigation = useNavigation();' to prevent conflict.
   const { status } = useSelector((state) => state.auth);
 
   const handleLogin = (values) => {
@@ -67,9 +71,10 @@ const LoginScreen = () => {
         )}
       </Formik>
 
+      {/* Navigation is now correctly accessed via the prop */}
       <Button
         mode="text"
-        onPress={() => Alert.alert('Navigate to Register')}
+        onPress={() => navigation.navigate('Register')}
         style={styles.registerButton}
       >
         Don't have an account? Register

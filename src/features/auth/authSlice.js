@@ -5,7 +5,7 @@ import axios from 'axios';
 
 // CRITICAL: Use the Android emulator's alias for the host machine
 // Example: Assuming your computer's local network IP is 192.168.1.10
-const API_URL = 'http://localhost:3000';
+const API_URL = 'http://192.168.31.238:3000';
 
 // Thunk for user login
 export const loginUser = createAsyncThunk(
@@ -21,7 +21,7 @@ export const loginUser = createAsyncThunk(
 
       return { token, user };
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.response?.data?.message || 'Login failed.');
+       return thunkAPI.rejectWithValue(error.response?.data?.message || 'Login failed.');
     }
   }
 );

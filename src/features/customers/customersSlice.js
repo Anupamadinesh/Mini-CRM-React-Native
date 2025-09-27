@@ -3,7 +3,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 // Example: Assuming your computer's local network IP is 192.168.1.10
-const API_URL = 'http://localhost:3000';
+const API_URL = 'http://192.168.31.238:3000'; 
 
 const createConfig = (token) => ({
     headers: { Authorization: `Bearer ${token}` }

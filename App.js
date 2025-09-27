@@ -1,42 +1,40 @@
-// App.js (Full code update for token persistence check)
-import React, { useEffect, useState } from 'react'; // ADD useState
+// App.js (Final, Stable Code)
+import React, { useEffect, useState } from 'react';
 import { Provider } from 'react-redux';
 import { StatusBar } from 'expo-status-bar';
-import { DefaultTheme, Provider as PaperProvider, ActivityIndicator } from 'react-native-paper'; // ADD ActivityIndicator
+import { DefaultTheme, Provider as PaperProvider, ActivityIndicator } from 'react-native-paper'; 
 import { View, StyleSheet } from 'react-native';
-import AsyncStorage from '@react-native-async-storage/async-storage'; // ADD AsyncStorage
-import { store } from 'src/store/store';
-import AppNavigator from 'src/navigation/AppNavigator';
+import AsyncStorage from '@react-native-async-storage/async-storage'; 
+
+import { store } from 'src/store/store'; // Final path verified
+import AppNavigator from 'src/navigation/AppNavigator'; // Final path verified
 
 const theme = {
   // ... (theme definition is correct)
 };
 
-// Component to handle initial loading and token check
-const InitialLoader = () => {
-  const [isReady, setIsReady] = useState(false);
+// Simplified component structure (renamed from InitialLoader to Main)
+const Main = () => {
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // 1. Simulate an async check (e.g., getting a persisted token)
-    async function prepare() {
+    // Simulate initial async operations needed before rendering the UI
+    async function loadResourcesAndDataAsync() {
       try {
-        // Here you would check AsyncStorage for the token
-        const token = await AsyncStorage.getItem('userToken');
-        // If token exists, dispatch a setToken action here, but for now, we just wait.
+        // (Optional: You can add code here to retrieve persisted user token)
       } catch (e) {
         console.warn(e);
       } finally {
-        // Tell the app to render the main navigator
-        setIsReady(true);
+        setIsLoading(false); // Tell the app it's safe to render the navigator
       }
     }
-    prepare();
+    loadResourcesAndDataAsync();
   }, []);
 
-  if (!isReady) {
+  if (isLoading) {
     return (
       <View style={styles.loadingContainer}>
-        <ActivityIndicator animating={true} size="large" color={theme.colors.primary} />
+      <ActivityIndicator animating={true} size="large" color="#6200EE" />
       </View>
     );
   }
@@ -52,8 +50,7 @@ const InitialLoader = () => {
 export default function App() {
   return (
     <Provider store={store}>
-      {/* Use the new loader component */}
-      <InitialLoader />
+      <Main />
     </Provider>
   );
 }
@@ -65,4 +62,3 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
 });
-// DELETE the old 'const Main' component as it's replaced by InitialLoader.
